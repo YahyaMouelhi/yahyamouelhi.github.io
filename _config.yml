@@ -16,7 +16,7 @@ timezone:
 
 title: 4n7h4r4x # the main title
 
-tagline: Binary Exploitation Enthusiast # it will display as the subtitle
+tagline: Cybersecurity Enthusiast | CTF Player # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
@@ -28,21 +28,21 @@ url: "https://yahyamouelhi.github.io"
 github:
   username: yahyamouelhi # change to your GitHub username
 
-twitter:
-  username: twitter_username # change to your Twitter username
+#twitter:
+#  username: twitter_username # change to your Twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: Yahya Mouelhi
+  name: 4n7h4r4x
   email: yahya.mouelhi@edu.isetcom.tn # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your Twitter homepage
+    #- https://twitter.com/username # change to your Twitter homepage
     - https://github.com/username # change to your GitHub homepage
     # Uncomment below to add more social links
-    # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://www.facebook.com/yahyamoelhi
+    - https://www.linkedin.com/in/yahya-mouelhi-259522239
 
 # Site Verification Settings
 webmaster_verifications:
