@@ -1,11 +1,11 @@
 ---
 title: "CYBERMAZE 5 (2025) - neon_alley "
-date: 2025-12-01 03:10:00 +0100
+date: 2025-12-01 05:10:00 +0100
 categories: [cybermaze_v5]
-tags: [pwn, ret2win, writeup, , easy , isetcom]
+tags: [pwn, ret2win, writeup, spark , isetcom , easy , cybermaze_v5]
 ---
 
-# [neon_alley] Writeup  
+# [ neon_alley ] Writeup  
 
 **Category:** [pwn]  
 **Points:** [500]        
