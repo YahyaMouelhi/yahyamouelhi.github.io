@@ -17,7 +17,7 @@ tags: [pwn, jop, writeup , spark , cybermaze_v5 , hard , isetcom]
 [You can download the files from my github and replay them !](https://github.com/YahyaMouelhi/cybermaze_v5)
 
 
-![challenge](https://cdn.discordapp.com/attachments/1439691535397552128/1445165298910236723/image.png?ex=692f5a91&is=692e0911&hm=60405b336ce3d6c98a1ec9462cbb87c2bc7a20d5948f80d13625732b3b57d658)
+![challenge](/assets/images/cybermaze_v5/megamaniac/)
 
 
 ## Tools Used
@@ -32,19 +32,19 @@ tags: [pwn, jop, writeup , spark , cybermaze_v5 , hard , isetcom]
 This a hard challenge that requires the player to apply the **JOP** technique ( **Jump Oriented Programming** ) , i will explain in details how this technique works and what does it needs and walk through the technical knowledge step by step later , The good thing is that this challenge is clear and straighforward , dosen't require reversing or long code analysis ... 
 As usual let's run **file** and **checksec** to see what we are working with :
 
-![file and checksec](https://media.discordapp.net/attachments/1439691535397552128/1445167067551633538/image.png?ex=692f5c36&is=692e0ab6&hm=64269f7fad928775d858376357568ad1c9bb9fba7f9ddd4df1d2993d9f5784ee&=&format=webp&quality=lossless&width=1838&height=475)
+![file and checksec](/assets/images/cybermaze_v5/megamaniac/)
 
 Intresting , let's open up gdb and see what we have !
 
-![gdb output](https://cdn.discordapp.com/attachments/1439691535397552128/1445167990025879642/image.png?ex=692f5d12&is=692e0b92&hm=8a6071b9dc0b418525e8c9a02e987d08f02a3e3eb2fb6db0fabe000b177de4e3)
+![gdb output](/assets/images/cybermaze_v5/megamaniac/)
 
 There is no intresting function except **trap** , let's disassemble it and see what it does :
 
-![disass trap](https://cdn.discordapp.com/attachments/1439691535397552128/1445168907760435332/image.png?ex=692f5ded&is=692e0c6d&hm=e50296c5d65f4afc2c948b18537f03178ae7764c78f7842866ec52b3448c8130)
+![disass trap](/assets/images/cybermaze_v5/megamaniac/)
 
 Let's see the pseudo code of this function from ghidra :
 
-![ghidra trap](https://cdn.discordapp.com/attachments/1439691535397552128/1445170481559769179/image.png?ex=692f5f64&is=692e0de4&hm=59efc674a3c0eada1b11251c7cc109a1989c5667f27ea946a9db151e0ba92218)
+![ghidra trap](/assets/images/cybermaze_v5/megamaniac/)
 
 As we can see the program shows a message , then prints random values using sendfile , puts another message and open the **flag.txt** for us and then reads input from the user (600 bytes) , and as we can see it reads more than the buffer size **+80 bytes** , the first thing someone should think of is use **write** or **sendfile** to print the content of the **flag.txt**
 let's see what gadgets we have .
@@ -53,9 +53,9 @@ If you use ropper , it will output **102** gadgets , u'll realise that there are
 
 So we can see it's not a **ROP chain** we litterally have no **pop** nor **syscall ; ret** so we need to think of sthg else , there's no **libc** in the handout so it's not a **ret2libc** , we can't execute shellcode because **NX** is enabled , to the point it would seem that the callenge is broken ( it's really not at all ) players might think of many more techniques but will be blocked at a certain point , let's analyse deeper the gadgets using **ROPgadget** , because **ropper** mainly focuses on gadgets that ends with **ret** , let's use **ROPgadget** : 
 
-![ropgadget output](https://media.discordapp.net/attachments/1439691535397552128/1445177018487410718/image.png?ex=692f657b&is=692e13fb&hm=5c717ac5be1f08868fc14046c9de6e2721ae201f9aa449bd58df95b4152ad08c&=&format=webp&quality=lossless&width=1838&height=315)
+![ropgadget output](/assets/images/cybermaze_v5/megamaniac/)
 
-![ropgadget output](https://media.discordapp.net/attachments/1439691535397552128/1445177136951459993/image.png?ex=692f6597&is=692e1417&hm=c5aa2c9c7ba0d4de084ea30985856b01814cf8532a8e2ec10ac565f921791c71&=&format=webp&quality=lossless&width=1838&height=257)
+![ropgadget output](/assets/images/cybermaze_v5/megamaniac/)
 
 There is a total of **128** unique gadgets , but when we used ropper it showed a total of **102** gadgets , **26** new gadgets ?? that might be very intersting , **ROPgadget** have an option that shows gadgets unrelated to **rop** : it's **--norop** let's use it and see what jmp gadgets the binary have :
 
@@ -105,22 +105,22 @@ To perform  **JOP** we need **2** main things :
 
 Here's a picture that might simplify what i was saying :
 
-![example of jop mechanism](https://cdn.discordapp.com/attachments/1439691535397552128/1445460905390243951/image.png?ex=69306ddf&is=692f1c5f&hm=2cc4bc0fc7415e6e669643376e3826c84f5d1ac0c54ff65795e237e5af8a13d8)
+![example of jop mechanism](/assets/images/cybermaze_v5/megamaniac/)
 
 If we can put useful instruction that ends with **jmp** to somewhere we can control , we can build this weird machine that does what we want , here's an example of real gadgets :
 
-![first run](https://cdn.discordapp.com/attachments/1439691535397552128/1445474647989817470/image.png?ex=69307aab&is=692f292b&hm=cfee1b9ed8980e9703f7de98ecdb5ce65379afb8ee44e9bc689be988b0061af0)
+![first run](/assets/images/cybermaze_v5/megamaniac/)
 
 
-![second run](https://media.discordapp.net/attachments/1439691535397552128/1445473987047063775/image.png?ex=69307a0e&is=692f288e&hm=f26e73580f628ee7592e65aacebfcdb3cbb4abbf9a27c0f8a9894a3cf768297f&=&format=webp&quality=lossless&width=1341&height=660)
+![second run](/assets/images/cybermaze_v5/megamaniac/)
 
-![third run](https://cdn.discordapp.com/attachments/1439691535397552128/1445475052803063991/image.png?ex=69307b0c&is=692f298c&hm=6866fd14536fa0d16d9f898309b49a5707723798311ece185fdecb3d3b72ff70)
+![third run](/assets/images/cybermaze_v5/megamaniac/)
 
 We won't always find gadget that increments what we need by 8 , sometimes it'll be more , or even less than 8 !! and depending on what we get we'll adapt , but i hope the visual example made it a bit simpler how all of this will work , but now is the big question , what's our goal to get the **flag.txt** ?
 
 If we go back to the program we'll see :
 
-![trap pseudo c code](https://cdn.discordapp.com/attachments/1439691535397552128/1445170481559769179/image.png?ex=692f5f64&is=692e0de4&hm=59efc674a3c0eada1b11251c7cc109a1989c5667f27ea946a9db151e0ba92218)
+![trap pseudo c code](/assets/images/cybermaze_v5/megamaniac/)
 
 The program have already opened **flag.txt** for us and also opened "/dev/urandom" so there is a total of 2 opened files the "/dev/urandom" will have a **fd** = 3 and the **flag.txt** will have a **fd** = **4** , the program printed some garbage random bytes using **sendfile** copies data directly from a file descriptor to a socket descriptor, all inside the kernel, avoiding expensive user-space copies , and we can use it exactly like write !
 
@@ -213,7 +213,7 @@ p.interactive()
 
 ```
 
-![solver output](https://cdn.discordapp.com/attachments/1439691535397552128/1445485445340200960/image.png?ex=693084b9&is=692f3339&hm=3f18c56f8090093c3994a67330a850d5c393b491835d34dce2077d8b5a46ebd7)
+![solver output](/assets/images/cybermaze_v5/megamaniac/)
 
 ## Helpful resources
 
