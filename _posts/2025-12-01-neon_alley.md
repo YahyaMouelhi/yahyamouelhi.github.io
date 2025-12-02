@@ -15,7 +15,7 @@ tags: [pwn, ret2win, writeup, spark , isetcom , easy , cybermaze_v5]
 [You can download the files from my github and replay them !](https://github.com/YahyaMouelhi/cybermaze_v5)
 
 
-![challenge](/assets/images/cybermaze_v5/neon_alley/)
+![challenge](/assets/images/cybermaze_v5/neon_alley/neon_alley_challenge.png)
 
 
 ## Tools Used
@@ -31,22 +31,22 @@ tags: [pwn, ret2win, writeup, spark , isetcom , easy , cybermaze_v5]
 
 - Let's run the basics commands **file and checksec** on the binary and see what we'll get :
 
-![file and checksec output](/assets/images/cybermaze_v5/neon_alley/)
+![file and checksec output](/assets/images/cybermaze_v5/neon_alley/file_checksec_neonalley.png)
 
 - Let's go directly to gdb and analyse the binary and see what functions we have and more ...
 
-![gdb output](/assets/images/cybermaze_v5/neon_alley/)
+![gdb output](/assets/images/cybermaze_v5/neon_alley/info_func_neon_alley.png)
 
-![gdb2 output](/assets/images/cybermaze_v5/neon_alley/)
+![gdb2 output](/assets/images/cybermaze_v5/neon_alley/disass_main_neon_alley.png)
 
-![gdb3 output](/assets/images/cybermaze_v5/neon_alley/)
+![gdb3 output](/assets/images/cybermaze_v5/neon_alley/enter_neon_alley_disass.png)
 
 
 - From these pictures we can get the addresses of win and see that inside the enter function it uses gets to read input from user in rbp-0x20 so the distance between rbp and our variable is 0x20 meaning the distance between our variable and the **RIP** = 0x28 ( 40 bytes ) ,
 and of course u can use the tool **cyclic** or whatever u are used to and you'll get the same value , one final trick to consider is :
 
 
-![ropper output](/assets/images/cybermaze_v5/neon_alley/)
+![ropper output](/assets/images/cybermaze_v5/neon_alley/neon_alley_ropper_ret.png)
 
 
 - We'll use the ret instruction to align the stack and make everything works as expected ( if you try to just directly return to win you'll face a segfault and you won't get the flag)
