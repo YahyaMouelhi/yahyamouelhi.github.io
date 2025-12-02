@@ -1,6 +1,6 @@
 ---
 title: "CYBERMAZE 5 (2025) - megaman-iac ( intended solve ) "
-date: 2025-12-01 10:10:00 +0100
+date: 2025-12-02 10:10:00 +0100
 categories: [cybermaze_v5]
 tags: [pwn, jop, writeup , spark , cybermaze_v5 , hard]
 ---
