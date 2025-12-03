@@ -17,7 +17,7 @@ tags: [pwn, jop, writeup , spark , cybermaze_v5 , hard , isetcom]
 [You can download the files from my github and replay them !](https://github.com/YahyaMouelhi/cybermaze_v5)
 
 
-![challenge](/assets/images/cybermaze_v5/megamaniac/)
+![challenge](/assets/images/cybermaze_v5/megamaniac/megamaniac_chall.png)
 
 
 ## Tools Used
@@ -32,19 +32,19 @@ tags: [pwn, jop, writeup , spark , cybermaze_v5 , hard , isetcom]
 This a hard challenge that requires the player to apply the **JOP** technique ( **Jump Oriented Programming** ) , i will explain in details how this technique works and what does it needs and walk through the technical knowledge step by step later , The good thing is that this challenge is clear and straighforward , dosen't require reversing or long code analysis ... 
 As usual let's run **file** and **checksec** to see what we are working with :
 
-![file and checksec](/assets/images/cybermaze_v5/megamaniac/)
+![file and checksec](/assets/images/cybermaze_v5/megamaniac/file_chcksc_megamaniac.png)
 
 Intresting , let's open up gdb and see what we have !
 
-![gdb output](/assets/images/cybermaze_v5/megamaniac/)
+![gdb output](/assets/images/cybermaze_v5/megamaniac/info_func_megamaniac.png)
 
 There is no intresting function except **trap** , let's disassemble it and see what it does :
 
-![disass trap](/assets/images/cybermaze_v5/megamaniac/)
+![disass trap](/assets/images/cybermaze_v5/megamaniac/disass_trap_naked.png)
 
 Let's see the pseudo code of this function from ghidra :
 
-![ghidra trap](/assets/images/cybermaze_v5/megamaniac/)
+![ghidra trap](/assets/images/cybermaze_v5/megamaniac/disass_trap_jop.png)
 
 As we can see the program shows a message , then prints random values using sendfile , puts another message and open the **flag.txt** for us and then reads input from the user (600 bytes) , and as we can see it reads more than the buffer size **+80 bytes** , the first thing someone should think of is use **write** or **sendfile** to print the content of the **flag.txt**
 let's see what gadgets we have .
@@ -53,9 +53,9 @@ If you use ropper , it will output **102** gadgets , u'll realise that there are
 
 So we can see it's not a **ROP chain** we litterally have no **pop** nor **syscall ; ret** so we need to think of sthg else , there's no **libc** in the handout so it's not a **ret2libc** , we can't execute shellcode because **NX** is enabled , to the point it would seem that the callenge is broken ( it's really not at all ) players might think of many more techniques but will be blocked at a certain point , let's analyse deeper the gadgets using **ROPgadget** , because **ropper** mainly focuses on gadgets that ends with **ret** , let's use **ROPgadget** : 
 
-![ropgadget output](/assets/images/cybermaze_v5/megamaniac/)
+![ropgadget output](/assets/images/cybermaze_v5/megamaniac/ropgadget_output_jop_1.png)
 
-![ropgadget output](/assets/images/cybermaze_v5/megamaniac/)
+![ropgadget output](/assets/images/cybermaze_v5/megamaniac/ropgadget_output_jop_2.png)
 
 There is a total of **128** unique gadgets , but when we used ropper it showed a total of **102** gadgets , **26** new gadgets ?? that might be very intersting , **ROPgadget** have an option that shows gadgets unrelated to **rop** : it's **--norop** let's use it and see what jmp gadgets the binary have :
 
@@ -105,22 +105,22 @@ To perform  **JOP** we need **2** main things :
 
 Here's a picture that might simplify what i was saying :
 
-![example of jop mechanism](/assets/images/cybermaze_v5/megamaniac/)
+![example of jop mechanism](/assets/images/cybermaze_v5/megamaniac/jop_table_example.png)
 
 If we can put useful instruction that ends with **jmp** to somewhere we can control , we can build this weird machine that does what we want , here's an example of real gadgets :
 
-![first run](/assets/images/cybermaze_v5/megamaniac/)
+![first run](/assets/images/cybermaze_v5/megamaniac/first_run_jop.png)
 
 
-![second run](/assets/images/cybermaze_v5/megamaniac/)
+![second run](/assets/images/cybermaze_v5/megamaniac/second_run_jop.png)
 
-![third run](/assets/images/cybermaze_v5/megamaniac/)
+![third run](/assets/images/cybermaze_v5/megamaniac/third_run_jop.png)
 
 We won't always find gadget that increments what we need by 8 , sometimes it'll be more , or even less than 8 !! and depending on what we get we'll adapt , but i hope the visual example made it a bit simpler how all of this will work , but now is the big question , what's our goal to get the **flag.txt** ?
 
 If we go back to the program we'll see :
 
-![trap pseudo c code](/assets/images/cybermaze_v5/megamaniac/)
+![trap pseudo c code](/assets/images/cybermaze_v5/megamaniac/disass_trap_jop.png)
 
 The program have already opened **flag.txt** for us and also opened "/dev/urandom" so there is a total of 2 opened files the "/dev/urandom" will have a **fd** = 3 and the **flag.txt** will have a **fd** = **4** , the program printed some garbage random bytes using **sendfile** copies data directly from a file descriptor to a socket descriptor, all inside the kernel, avoiding expensive user-space copies , and we can use it exactly like write !
 
@@ -213,7 +213,7 @@ p.interactive()
 
 ```
 
-![solver output](/assets/images/cybermaze_v5/megamaniac/)
+![solver output](/assets/images/cybermaze_v5/megamaniac/flag_megamania_intdd.png)
 
 ## Helpful resources
 
