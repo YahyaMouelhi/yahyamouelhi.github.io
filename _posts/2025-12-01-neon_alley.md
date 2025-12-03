@@ -80,7 +80,7 @@ p.interactive()
 
 - if we run it we get this :
 
-![solver.py output](/assets/images/cybermaze_v5/neon_alley/)
+![solver.py output](/assets/images/cybermaze_v5/neon_alley/neon_alley_flag.png)
 
 
 - Thanks for reading hope this was helpful !
