@@ -1,7 +1,7 @@
 ---
 layout: page
 icon:   fas fa-user-secret
-order:  2
+order:  4
 title:  Whoami
 ---
 
@@ -121,7 +121,7 @@ title:  Whoami
   <h2>// links</h2>
   <div class="link-row">
     <a href="https://github.com/yahyamouelhi" target="_blank" class="whoami-link"><i class="fab fa-github"></i> GitHub</a>
-    <a href="www.linkedin.com/in/yahyamouelhi" target="_blank" class="whoami-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <a href="https://www.linkedin.com/in/yahyamouelhi" target="_blank" class="whoami-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
     <a href="mailto:yahya.mouelhi@edu.isetcom.tn" class="whoami-link"><i class="fas fa-envelope"></i> Email</a>
   </div>
 </div>
