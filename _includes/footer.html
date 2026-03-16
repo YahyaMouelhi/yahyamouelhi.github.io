@@ -1,0 +1,22 @@
+<!-- Custom footer — overrides Chirpy's default -->
+<footer
+  aria-label="Site Info"
+  class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
+  "
+>
+  <p>
+    <span class="footer-prompt">root@4n7h4r4x:~#</span>
+    &copy; <time>{{ 'now' | date: '%Y' }}</time>
+    {% if site.social.links %}
+      <a href="{{ site.social.links[0] }}">{{ site.social.name }}</a>
+    {% else %}
+      <span>{{ site.social.name }}</span>
+    {% endif %}
+    <span class="footer-sep">&middot;</span>
+    <span class="footer-status"><span class="status-dot"></span> operational</span>
+    <span class="footer-sep">&middot;</span>
+    <span class="footer-built">built with <a href="https://jekyllrb.com" target="_blank" rel="noopener">jekyll</a></span>
+  </p>
+</footer>

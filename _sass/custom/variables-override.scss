@@ -1,0 +1,39 @@
+/* =============================================================
+   _sass/custom/variables-override.scss
+   Chirpy auto-imports this. No other SCSS edits needed.
+   ============================================================= */
+
+$dark-mode:           true;
+
+$body-bg:             #0d0d0d;
+$body-color:          #d4c5b0;
+$link-color:          #e63946;
+$link-hover-color:    #ff4757;
+
+$sidebar-bg:          #070707;
+$sidebar-color:       #3a3a3a;
+$sidebar-width:       260px;
+
+$topbar-bg:           #060606;
+$topbar-height:       48px;
+
+$card-bg:             #090909;
+$card-border-color:   #141414;
+$card-box-shadow:     none;
+
+$font-family-base:    'Barlow Condensed', sans-serif;
+$font-family-heading: 'Bebas Neue', sans-serif;
+$font-size-base:      1rem;
+$line-height-base:    1.65;
+
+$code-bg:             #080808;
+$code-color:          #f4a261;
+$kbd-bg:              #0f0f0f;
+
+$border-color:        #141414;
+$border-radius:       0;
+$border-radius-sm:    0;
+$border-radius-lg:    0;
+
+$heading-color:       #d4c5b0;
+$blockquote-color:    #6a5a4a;
