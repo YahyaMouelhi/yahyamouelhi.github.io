@@ -55,11 +55,11 @@ title:  Whoami
   <div class="skill-bars">
     <div class="skill-item">
       <div class="skill-label"><span class="skill-name">Binary Exploitation</span><span class="skill-pct">90%</span></div>
-      <div class="skill-track"><div class="skill-fill" style="--w: 90%"></div></div>
+      <div class="skill-track"><div class="skill-fill" style="--w: 70%"></div></div>
     </div>
     <div class="skill-item">
       <div class="skill-label"><span class="skill-name">Penetration testing</span><span class="skill-pct">75%</span></div>
-      <div class="skill-track"><div class="skill-fill" style="--w: 75%"></div></div>
+      <div class="skill-track"><div class="skill-fill" style="--w: 40%"></div></div>
     </div>
     <!--
     <div class="skill-item">
@@ -112,9 +112,10 @@ title:  Whoami
       <h3>Crypto</h3>
       <p>RSA attacks, elliptic curves, hash cracking, custom ciphers</p>
     </div>
-    -->
+    
   </div>
 </div>
+-->
 
 <!-- Links -->
 <div class="whoami-section">
