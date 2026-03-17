@@ -8,10 +8,10 @@ tags: [pwn, shellcode, bof, stack, writeup, Nerdicon, ramadan_ctf_2026, medium]
 # [ Arj3 Lil Chorba ] Writeup
 
 **Category:** Pwn (Buffer Overflow + Shellcode)  
-**Difficulty:** Medium  
+**Difficulty:** Easy  
 **Author:** Nerdicon  
 
-![challenge](/assets/images/ramadan_ctf_2026/arj3_lil_chorba/arj3_lil_chorba_challenge.png)
+![challenge](/assets/images/ramadhan-ctf-26/Nerdicon/arj3_lil_chorba/arj3_lil_chorba.png)
 
 ## Tools Used
 
@@ -47,6 +47,16 @@ void vuln() {
     fread(chorba, 256, 1, stdin);    // fills chorba with our shellcode
 }
 ```
+
+## File and checksec
+
+Let's run the usual commands to get an idea of the binary and it's protections  :
+
+![Checksec and file][/assets/images/ramadhan-ctf-26/Nerdicon/arj3_lil_chorba/arj3_lil_chorba_file_checksec.png)
+
+It should be very obvious what we need to do , we need to inject and somehow execute a shellcode because the binary have NX disabled , let's run the binary and analyse futhermore and see ...
+
+![run binary](/assets/images/ramadhan-ctf-26/Nerdicon/arj3_lil_chorba/arj3_lil_chorba_run.png)
 
 Key observations:
 
@@ -127,7 +137,7 @@ syscall
 p.interactive()
 ```
 
-![flag](/assets/images/ramadan_ctf_2026/arj3_lil_chorba/arj3_lil_chorba_flag.png)
+![flag](/assets/images/ramadhan-ctf-26/Nerdicon/arj3_lil_chorba/arj3_lil_chorba_flag.png)
 
 ---
 
