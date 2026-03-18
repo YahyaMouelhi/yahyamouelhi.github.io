@@ -9,18 +9,17 @@ tags: [ramadan_ctf_2026]
 
 ![ramadhan](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/platform.png?raw=true)
 
-A focused collection of **binary exploitation (pwn)** writeups and challenges from the Ramadan CTF 2026, organized by **Sparks Engineers (ISETCOM)**.
-
-Each writeup is concise and practical, designed to help you understand the exploit and apply the technique yourself.
+A collection of **binary exploitation (pwn)** writeups from Ramadan CTF 2026 by **Sparks Engineers (IsetCom)**.  
+Concise, practical, and easy to follow—learn the exploit and try it yourself.
 
 ---
 
 ## Challenges
 
 Access all challenges here:  
-[Repository](https://github.com/YahyaMouelhi/ramadhan-pwn-challenges-2026.git)
+[GitHub Repository](https://github.com/YahyaMouelhi/ramadhan-pwn-challenges-2026.git)
 
 ---
 
-If you have any question feel free to ask anytime ! 
-Happy hacking.
+Questions? Feel free to ask anytime.  
+Happy hacking!
