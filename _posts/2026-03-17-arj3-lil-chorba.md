@@ -153,7 +153,7 @@ p.interactive()
 
 ## Helpful Resources
 
-- [Shellcoding 101](https://www.exploit-db.com/docs/english/13019-shell-code-for-beginners.pdf)
+- [64-bit-linux-assembly-and-shellcoding](https://www.hackingarticles.in/64-bit-linux-assembly-and-shellcoding/)
 - [x64 Linux syscall table](https://x64.syscall.sh/)
 
 Thanks for reading!
