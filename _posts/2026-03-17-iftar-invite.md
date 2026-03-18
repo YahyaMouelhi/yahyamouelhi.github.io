@@ -11,7 +11,7 @@ tags: [pwn, ret2libc, rop, writeup, 4n7h4r4x, ramadan_ctf_2026, medium]
 **Difficulty:** Medium  
 **Author:** 4n7h4r4x  
 
-![challenge](/assets/images/ramadan_ctf_2026/iftar_invite/iftar_invite_challenge.png)
+![challenge](/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar_invite.png)
 
 ## Tools Used
 
@@ -42,11 +42,21 @@ The binary is **non-PIE** and **dynamically linked**. This means:
 
 ---
 
+# Patching the binary 
+
+I made sure to patch the binary correctly so it uses the libc from the same directory ( rpath is already set to ./ ) but in case sthg dosent work use **patchelf** command as  follows and it'll work fine :
+
+![patch](/assets/images/ramadan_ctf_2026/iftar_invite/iftar_invite_patch.png)
+
+---
+
 ## Reverse Engineering
 
-In Ghidra, the `challenge` function reads our input into a buffer with a clear overflow:
+![ghidra](/assets/images/ramadan_ctf_2026/iftar_invite/iftar_invite_main.png)
+![ghidra](/assets/images/ramadan_ctf_2026/iftar_invite/iftar_invite_chef_response.png)
+![ghidra](/assets/images/ramadan_ctf_2026/iftar_invite/iftar_invite_challenge.png)
 
-![ghidra](/assets/images/ramadan_ctf_2026/iftar_invite/iftar_invite_ghidra.png)
+In Ghidra, the `challenge` function reads our input into a buffer with a clear overflow:
 
 The buffer is at `rbp - 0x40`, and we can overflow it. The offset to RIP is **0x48** bytes (0x40 buffer + 0x8 saved RBP).
 
@@ -73,7 +83,7 @@ This is a **two-stage** ret2libc attack:
 
 Using `ropper` or `ROPgadget` on the binary:
 
-![ropper](/assets/images/ramadan_ctf_2026/iftar_invite/iftar_invite_ropper.png)
+![ropper](/assets/images/ramadan_ctf_2026/iftar_invite/iftar_invite_gadgets.png)
 
 ```bash
 0x4013a3: pop rdi; ret;
