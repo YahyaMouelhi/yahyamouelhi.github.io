@@ -11,7 +11,7 @@ tags: [pwn, ret2libc, rop, writeup, 4n7h4r4x, ramadan_ctf_2026, medium]
 **Difficulty:** Medium  
 **Author:** 4n7h4r4x  
 
-![challenge](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite.png)
+![challenge](https://raw.githubusercontent.com/YahyaMouelhi/yahyamouelhi.github.io/refs/heads/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite.png)
 
 ## Tools Used
 
@@ -33,7 +33,7 @@ A custom `libc.so.6` and `ld-linux-x86-64.so.2` are provided -- this is a strong
 
 Running `file` and `checksec`:
 
-![file and checksec](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_file_checksec.png)
+![file and checksec](https://raw.githubusercontent.com/YahyaMouelhi/yahyamouelhi.github.io/refs/heads/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_file_checksec.png)
 
 The binary is **non-PIE** and **dynamically linked**. This means:
 - Code addresses are fixed (no ASLR on the binary itself)
@@ -46,15 +46,15 @@ The binary is **non-PIE** and **dynamically linked**. This means:
 
 I made sure to patch the binary correctly so it uses the libc from the same directory ( rpath is already set to ./ ) but in case sthg dosent work use **patchelf** command as  follows and it'll work fine :
 
-![patch](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_patch.png)
+![patch](https://raw.githubusercontent.com/YahyaMouelhi/yahyamouelhi.github.io/refs/heads/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_patch.png)
 
 ---
 
 ## Reverse Engineering
 
-![ghidra](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_main.png)
-![ghidra](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_chef_response.png)
-![ghidra](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_challenge.png)
+![ghidra](https://raw.githubusercontent.com/YahyaMouelhi/yahyamouelhi.github.io/refs/heads/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_main.png)
+![ghidra](https://raw.githubusercontent.com/YahyaMouelhi/yahyamouelhi.github.io/refs/heads/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_chef_response.png)
+![ghidra](https://raw.githubusercontent.com/YahyaMouelhi/yahyamouelhi.github.io/refs/heads/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_challenge.png)
 
 In Ghidra, the `challenge` function reads our input into a buffer with a clear overflow:
 
@@ -83,7 +83,7 @@ This is a **two-stage** ret2libc attack:
 
 Using `ropper` or `ROPgadget` on the binary:
 
-![ropper](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_gadgets.png)
+![ropper](https://raw.githubusercontent.com/YahyaMouelhi/yahyamouelhi.github.io/refs/heads/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_gadgets.png)
 
 ```bash
 0x4013a3: pop rdi; ret;
@@ -151,7 +151,7 @@ p.send(pay2)
 p.interactive()
 ```
 
-![flag](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_flag.png)
+![flag](https://raw.githubusercontent.com/YahyaMouelhi/yahyamouelhi.github.io/refs/heads/main/assets/images/ramadhan-ctf-26/4n7h4r4x/iftar-invite/iftar_invite_flag.png)
 
 ---
 
