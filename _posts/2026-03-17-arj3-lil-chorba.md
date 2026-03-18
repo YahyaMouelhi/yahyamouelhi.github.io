@@ -11,7 +11,7 @@ tags: [pwn, shellcode, bof, stack, writeup, Nerdicon, ramadan_ctf_2026, medium]
 **Difficulty:** Easy  
 **Author:** Nerdicon  
 
-![challenge](/assets/images/ramadhan-ctf-26/Nerdicon/arj3_lil_chorba/arj3_lil_chorba.png)
+![challenge](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/Nerdicon/arj3_lil_chorba/arj3_lil_chorba.png?raw=true)
 
 ## Tools Used
 
@@ -52,11 +52,11 @@ void vuln() {
 
 Let's run the usual commands to get an idea of the binary and it's protections  :
 
-![Checksec and file][/assets/images/ramadhan-ctf-26/Nerdicon/arj3_lil_chorba/arj3_lil_chorba_file_checksec.png)
+![Checksec and file](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/Nerdicon/arj3_lil_chorba/arj3_lil_chorba_file_checksec.png?raw=true)
 
 It should be very obvious what we need to do , we need to inject and somehow execute a shellcode because the binary have NX disabled , let's run the binary and analyse futhermore and see ...
 
-![run binary](/assets/images/ramadhan-ctf-26/Nerdicon/arj3_lil_chorba/arj3_lil_chorba_run.png)
+![run binary](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/Nerdicon/arj3_lil_chorba/arj3_lil_chorba_run.png?raw=true)
 
 Key observations:
 
@@ -137,7 +137,7 @@ syscall
 p.interactive()
 ```
 
-![flag](/assets/images/ramadhan-ctf-26/Nerdicon/arj3_lil_chorba/arj3_lil_chorba_flag.png)
+![flag](https://github.com/YahyaMouelhi/yahyamouelhi.github.io/blob/main/assets/images/ramadhan-ctf-26/Nerdicon/arj3_lil_chorba/arj3_lil_chorba_flag.png?raw=true)
 
 ---
 
